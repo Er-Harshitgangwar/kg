@@ -4,137 +4,110 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Generic title: preview me personal name nahi aayega -->
-<title>A Little Birthday Surprise 🎂</title>
-
-<meta name="description" content="A little birthday surprise filled with wishes, smiles and beautiful hopes.">
+<title>A Birthday Surprise 🎂</title>
 
 <style>
-
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
 }
 
-html{
-    scroll-behavior:smooth;
-}
-
 body{
-    font-family: "Segoe UI", Arial, sans-serif;
-    background:
-        radial-gradient(circle at top,#30134d 0%,#160c2b 40%,#080511 100%);
-    color:white;
+    font-family:Arial, sans-serif;
     min-height:100vh;
     overflow:hidden;
+    color:white;
+    background:linear-gradient(135deg,#12051f,#321044,#16051f);
 }
 
-/* ---------- BACKGROUND STARS ---------- */
-
-.stars{
-    position:fixed;
-    inset:0;
-    pointer-events:none;
-    z-index:0;
-}
-
+/* Stars */
 .star{
-    position:absolute;
+    position:fixed;
     width:3px;
     height:3px;
     background:white;
     border-radius:50%;
     animation:twinkle 2s infinite alternate;
+    z-index:0;
 }
 
 @keyframes twinkle{
-    from{opacity:.2;transform:scale(.7);}
-    to{opacity:1;transform:scale(1.4);}
+    from{opacity:.2;transform:scale(.5)}
+    to{opacity:1;transform:scale(1.5)}
 }
 
-/* ---------- MAIN ---------- */
-
+/* Main */
 .container{
-    position:relative;
-    z-index:2;
     width:100%;
     height:100vh;
     display:flex;
     justify-content:center;
     align-items:center;
-    padding:20px;
+    padding:15px;
+    position:relative;
+    z-index:2;
 }
 
 .book{
-    width:min(900px,95vw);
-    height:min(650px,90vh);
+    width:900px;
+    max-width:95%;
+    height:650px;
+    max-height:90vh;
     position:relative;
 }
 
-/* ---------- PAGES ---------- */
-
+/* Pages */
 .page{
+    display:none;
     position:absolute;
-    inset:0;
-    padding:55px 45px;
+    width:100%;
+    height:100%;
+    padding:55px 45px 100px;
     border-radius:30px;
 
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255,255,255,.13),
-            rgba(255,255,255,.045)
-        );
-
-    border:1px solid rgba(255,255,255,.18);
-
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.2);
     backdrop-filter:blur(15px);
 
-    box-shadow:
-        0 25px 80px rgba(0,0,0,.5),
-        inset 0 0 40px rgba(255,255,255,.025);
+    box-shadow:0 20px 70px rgba(0,0,0,.5);
 
-    display:none;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
     text-align:center;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
 
-    overflow:hidden;
+    overflow:auto;
 }
 
 .page.active{
     display:flex;
-    animation:pageIn .7s ease;
+    animation:showPage .6s ease;
 }
 
-@keyframes pageIn{
+@keyframes showPage{
     from{
         opacity:0;
-        transform:scale(.94) translateY(20px);
+        transform:scale(.94);
     }
     to{
         opacity:1;
-        transform:scale(1) translateY(0);
+        transform:scale(1);
     }
 }
 
-/* ---------- TEXT ---------- */
-
+/* Text */
 .small{
-    color:#ffb9da;
+    color:#ff9dca;
     letter-spacing:3px;
-    text-transform:uppercase;
     font-size:13px;
-    margin-bottom:18px;
+    margin-bottom:15px;
 }
 
 h1{
-    font-size:clamp(38px,7vw,72px);
-    line-height:1.05;
-    margin-bottom:20px;
-    background:linear-gradient(90deg,#fff,#ffb7d7,#ffd2e6);
+    font-size:clamp(42px,7vw,75px);
+    margin-bottom:15px;
+    background:linear-gradient(90deg,#fff,#ff9dca,#ffd6e8);
     -webkit-background-clip:text;
     -webkit-text-fill-color:transparent;
 }
@@ -145,147 +118,68 @@ h2{
 }
 
 p{
-    max-width:700px;
+    max-width:720px;
     line-height:1.8;
-    color:#eee;
+    color:#f1eaf2;
     font-size:17px;
 }
 
-.highlight{
-    color:#ff9fcb;
+.pink{
+    color:#ff9dca;
 }
 
-.big-heart{
-    font-size:90px;
-    animation:heartbeat 1.5s infinite;
-    margin-bottom:20px;
-}
-
-@keyframes heartbeat{
-    0%,100%{transform:scale(1);}
-    15%{transform:scale(1.15);}
-    30%{transform:scale(1);}
-    45%{transform:scale(1.1);}
-}
-
-/* ---------- BUTTONS ---------- */
-
-.buttons{
-    position:absolute;
-    bottom:25px;
-    width:100%;
-    display:flex;
-    justify-content:center;
-    gap:12px;
-    z-index:20;
-}
-
-button{
-    border:none;
-    padding:12px 22px;
-    border-radius:30px;
-    color:white;
-    background:linear-gradient(135deg,#ff4f9a,#a33cff);
-    font-size:15px;
-    cursor:pointer;
-    box-shadow:0 8px 25px rgba(255,60,150,.25);
-    transition:.25s;
-}
-
-button:hover{
-    transform:translateY(-3px);
-    box-shadow:0 12px 30px rgba(255,60,150,.4);
-}
-
-/* ---------- PAGE COUNTER ---------- */
-
-.counter{
-    position:absolute;
-    top:20px;
-    right:25px;
-    font-size:13px;
-    color:#d8c9e5;
-    z-index:20;
-}
-
-/* ---------- PROGRESS ---------- */
-
-.progress{
-    position:absolute;
-    top:0;
-    left:0;
-    height:4px;
-    width:0%;
-    background:linear-gradient(90deg,#ff4f9a,#c46cff);
+.line{
+    width:100px;
+    height:3px;
+    background:#ff63a7;
     border-radius:10px;
-    transition:.5s;
-    z-index:30;
+    margin:15px;
 }
 
-/* ---------- ENVELOPE ---------- */
-
-.envelope{
-    width:180px;
-    height:120px;
-    background:#ff5c9f;
-    border-radius:8px;
-    position:relative;
-    cursor:pointer;
-    margin:25px 0;
-    box-shadow:0 20px 50px rgba(255,50,140,.3);
+/* Heart */
+.big-heart{
+    font-size:85px;
+    animation:heartBeat 1.4s infinite;
 }
 
-.envelope:before{
-    content:"";
-    position:absolute;
-    top:0;
-    left:0;
-    border-left:90px solid transparent;
-    border-right:90px solid transparent;
-    border-top:65px solid #ff9bc5;
+@keyframes heartBeat{
+    0%,100%{transform:scale(1)}
+    20%{transform:scale(1.18)}
+    40%{transform:scale(1)}
+    60%{transform:scale(1.1)}
 }
 
-.envelope:after{
-    content:"💌";
-    position:absolute;
-    left:50%;
-    top:50%;
-    transform:translate(-50%,-50%);
-    font-size:42px;
+/* Quote */
+.quote{
+    max-width:680px;
+    font-size:25px;
+    line-height:1.6;
+    color:#ffe2ef;
+    margin:20px;
 }
 
-.envelope.open{
-    transform:rotateX(15deg);
-}
-
-/* ---------- CARDS ---------- */
-
+/* Cards */
 .cards{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:15px;
-    width:100%;
+    display:flex;
+    gap:18px;
     max-width:750px;
-    margin-top:20px;
+    width:100%;
+    justify-content:center;
+    margin-top:15px;
 }
 
 .card{
-    padding:22px 14px;
+    flex:1;
+    padding:25px 15px;
     border-radius:20px;
     background:rgba(255,255,255,.07);
     border:1px solid rgba(255,255,255,.1);
-    transition:.3s;
 }
 
-.card:hover{
-    transform:translateY(-8px);
-    background:rgba(255,255,255,.11);
-}
-
-.card .emoji{
-    font-size:35px;
+.card span{
     display:block;
-    margin-bottom:10px;
+    font-size:38px;
+    margin-bottom:12px;
 }
 
 .card p{
@@ -293,33 +187,124 @@ button:hover{
     line-height:1.5;
 }
 
-/* ---------- QUOTE ---------- */
-
-.quote{
-    font-size:25px;
-    line-height:1.6;
-    max-width:680px;
-    color:#ffe4f0;
-    margin:20px 0;
+/* Envelope */
+.envelope{
+    width:190px;
+    height:125px;
+    background:#ff579c;
+    border-radius:8px;
+    margin:20px;
+    cursor:pointer;
+    position:relative;
+    box-shadow:0 15px 40px rgba(255,60,150,.3);
+    transition:.3s;
 }
 
-.line{
-    width:100px;
-    height:3px;
+.envelope:hover{
+    transform:scale(1.05);
+}
+
+.envelope:before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    border-left:95px solid transparent;
+    border-right:95px solid transparent;
+    border-top:70px solid #ffabd0;
+}
+
+.envelope:after{
+    content:"💌";
+    position:absolute;
+    font-size:45px;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+}
+
+/* Buttons */
+.buttons{
+    position:absolute;
+    bottom:15px;
+    width:100%;
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    z-index:50;
+}
+
+button{
+    border:none;
+    color:white;
+    padding:12px 23px;
+    border-radius:30px;
+    background:linear-gradient(135deg,#ff4f99,#8f42d6);
+    cursor:pointer;
+    font-size:15px;
+    transition:.25s;
+}
+
+button:hover{
+    transform:translateY(-3px);
+}
+
+/* Counter */
+.counter{
+    position:absolute;
+    right:20px;
+    top:18px;
+    z-index:50;
+    color:#ddd;
+    font-size:13px;
+}
+
+/* Progress */
+.progress{
+    position:absolute;
+    left:0;
+    top:0;
+    height:4px;
+    width:8.33%;
     background:#ff65a8;
     border-radius:10px;
-    margin:15px auto;
+    z-index:60;
+    transition:.4s;
 }
 
-/* ---------- BALLOONS ---------- */
+/* Floating Hearts */
+.heart{
+    position:fixed;
+    bottom:-40px;
+    pointer-events:none;
+    z-index:1;
+    animation:floatHeart linear forwards;
+}
 
+@keyframes floatHeart{
+    from{
+        transform:translateY(0);
+        opacity:0;
+    }
+
+    15%{
+        opacity:1;
+    }
+
+    to{
+        transform:translateY(-110vh) rotate(30deg);
+        opacity:0;
+    }
+}
+
+/* Balloons */
 .balloon{
     position:fixed;
-    bottom:-120px;
-    font-size:55px;
-    animation:balloonUp linear forwards;
-    z-index:1;
+    bottom:-100px;
+    font-size:50px;
     pointer-events:none;
+    z-index:1;
+    animation:balloonUp linear forwards;
 }
 
 @keyframes balloonUp{
@@ -329,95 +314,37 @@ button:hover{
     }
 }
 
-/* ---------- FLOATING HEART ---------- */
-
-.heart{
-    position:fixed;
-    bottom:-30px;
-    color:#ff72ad;
-    font-size:20px;
-    z-index:1;
-    pointer-events:none;
-    animation:heartUp linear forwards;
-}
-
-@keyframes heartUp{
-    0%{
-        transform:translateY(0) scale(.5) rotate(0);
-        opacity:0;
-    }
-
-    15%{
-        opacity:1;
-    }
-
-    100%{
-        transform:translateY(-110vh) scale(1.5) rotate(40deg);
-        opacity:0;
-    }
-}
-
-/* ---------- SPARKLE ---------- */
-
+/* Sparkle */
 .sparkle{
     position:fixed;
     pointer-events:none;
-    font-size:18px;
-    animation:sparkleOut 1s forwards;
-    z-index:50;
+    z-index:100;
+    animation:sparkle 1s forwards;
 }
 
-@keyframes sparkleOut{
+@keyframes sparkle{
     from{
-        transform:scale(.2);
         opacity:1;
+        transform:scale(.2);
     }
+
     to{
-        transform:scale(1.8);
         opacity:0;
+        transform:scale(2);
     }
 }
 
-/* ---------- PHOTO PLACEHOLDER ---------- */
-
-.photo-box{
-    width:170px;
-    height:170px;
-    border-radius:50%;
-    margin:15px;
-    border:4px solid rgba(255,255,255,.25);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:60px;
-    background:linear-gradient(135deg,#ff579e,#7b39c9);
-    box-shadow:0 0 40px rgba(255,75,160,.3);
-}
-
-/* ---------- FINAL ---------- */
-
-.final-heart{
-    font-size:110px;
-    filter:drop-shadow(0 0 20px #ff4c9b);
-    animation:heartbeat 1.4s infinite;
-}
-
-/* ---------- MOBILE ---------- */
-
+/* Mobile */
 @media(max-width:600px){
 
-    .container{
-        padding:10px;
-    }
-
     .book{
-        width:100%;
+        max-width:100%;
         height:92vh;
     }
 
     .page{
-        padding:45px 22px 75px;
-        border-radius:23px;
+        padding:45px 22px 90px;
+        border-radius:22px;
     }
 
     p{
@@ -430,36 +357,34 @@ button:hover{
     }
 
     .cards{
-        grid-template-columns:1fr;
-        max-height:310px;
-        overflow:auto;
+        flex-direction:column;
+        gap:10px;
     }
 
     .card{
-        padding:14px;
+        padding:15px;
     }
 
-    .card .emoji{
-        font-size:27px;
-    }
-
-    button{
-        padding:10px 17px;
-        font-size:14px;
+    .card span{
+        font-size:28px;
     }
 
     .big-heart{
         font-size:70px;
     }
 
+    button{
+        padding:10px 17px;
+        font-size:14px;
+    }
 }
-
 </style>
 </head>
 
 <body>
 
-<div class="stars" id="stars"></div>
+<!-- Background stars -->
+<div id="stars"></div>
 
 <div class="container">
 
@@ -468,99 +393,106 @@ button:hover{
 <div class="progress" id="progress"></div>
 
 <div class="counter">
-    <span id="pageNumber">1</span> / 12
+Page <span id="number">1</span> / 12
 </div>
 
 
-<!-- ================= PAGE 1 ================= -->
+<!-- PAGE 1 -->
 
 <section class="page active">
 
-<div class="small">A little surprise for you</div>
+<div class="small">A little birthday surprise</div>
 
 <div class="big-heart">💗</div>
 
 <h1>Happy Birthday</h1>
 
-<h2 id="typing"></h2>
+<h2>Kamini ✨</h2>
 
 <div class="line"></div>
 
 <p>
-Aaj ka din bas ek simple wish se thoda zyada special hona chahiye.
-Isliye ye chhota sa digital surprise banaya hai,
-jisme kuch words hain jo shayad saamne bolna mushkil hota hai.
+Aaj ka din thoda extra special hona chahiye,
+isliye ye chhota sa surprise sirf ek birthday wish nahi,
+balki kuch genuine words ka collection hai.
 </p>
 
 </section>
 
 
-<!-- ================= PAGE 2 ================= -->
+<!-- PAGE 2 -->
 
 <section class="page">
 
 <div class="small">Page 02</div>
 
-<h2>🌸 A Beautiful Day</h2>
+<h2>🌸 Today Is Your Day</h2>
 
 <p>
-Birthday sirf calendar ki ek date nahi hoti.
-Ye ek reminder hota hai ki duniya mein ek aur beautiful year add hua,
-aur uske saath naye moments, naye dreams aur naye chances bhi aaye.
+Birthday ek beautiful reminder hai ki life mein
+ek aur saal add hua hai aur uske saath
+bahut saare naye moments bhi aane wale hain.
 </p>
 
 <br>
 
 <p>
-I hope tumhara aane wala year
-peace, happiness, success aur bahut saari genuine smiles se bhara ho.
-Jo cheezein tum chahti ho,
-unke liye tumhe patience bhi mile aur courage bhi.
+I hope tumhara ye new year
+happiness, peace, success aur beautiful memories
+se filled ho.
 </p>
+
+<div class="big-heart">💖</div>
 
 </section>
 
 
-<!-- ================= PAGE 3 ================= -->
+<!-- PAGE 3 -->
 
 <section class="page">
 
 <div class="small">Page 03</div>
 
-<h2>💌 Open This Wish</h2>
+<h2>💌 Open This</h2>
 
 <div class="envelope" onclick="openEnvelope()"></div>
 
 <p id="envelopeText">
-Is envelope ko click karo...
+Envelope par click karo 💗
 </p>
 
 </section>
 
 
-<!-- ================= PAGE 4 ================= -->
+<!-- PAGE 4 -->
 
 <section class="page">
 
 <div class="small">Page 04</div>
 
-<h2>✨ Some Simple Wishes</h2>
+<h2>🌷 Some Wishes</h2>
 
 <div class="cards">
 
 <div class="card">
-<span class="emoji">😊</span>
-<p>Hamesha smile karne ke reasons milte rahein.</p>
+<span>😊</span>
+<p>
+Hamesha smile karne ke reasons milte rahein.
+</p>
 </div>
 
 <div class="card">
-<span class="emoji">🌷</span>
-<p>Har difficult day ke baad better days aayein.</p>
+<span>🌸</span>
+<p>
+Har difficult day ke baad better day aaye.
+</p>
 </div>
 
 <div class="card">
-<span class="emoji">⭐</span>
-<p>Tumhare dreams dheere-dheere reality bante rahein.</p>
+<span>⭐</span>
+<p>
+Tumhare dreams slowly reality bante rahein.
+</p>
 </div>
 
 </div>
@@ -568,13 +500,13 @@ Is envelope ko click karo...
 </section>
 
 
-<!-- ================= PAGE 5 ================= -->
+<!-- PAGE 5 -->
 
 <section class="page">
 
 <div class="small">Page 05</div>
 
-<h2>🌙 Take It Easy</h2>
+<h2>🌙 One Little Reminder</h2>
 
 <div class="quote">
 "Har cheez ka answer aaj hi milna zaroori nahi hota."
@@ -583,37 +515,35 @@ Is envelope ko click karo...
 <div class="line"></div>
 
 <p>
-Kabhi-kabhi life thodi confusing hoti hai.
-Aise time par khud par unnecessary pressure mat lena.
-Ek-ek din ko calmly handle karna.
-Jo cheez tumhare control mein hai,
-uspar focus karna aur baaki cheezon ko thoda time dena.
+Kabhi life thodi confusing lage,
+to unnecessary tension mat lena.
+Jo tumhare control mein hai,
+bas us par focus karna.
+Baaki cheezon ko thoda time dena.
 </p>
 
 </section>
 
 
-<!-- ================= PAGE 6 ================= -->
+<!-- PAGE 6 -->
 
 <section class="page">
 
 <div class="small">Page 06</div>
 
-<h2>🌻 For Your Future</h2>
+<h2>🌻 Keep Going</h2>
 
 <p>
-Apne dreams ko chhota mat samajhna.
-Tumhare paas abhi bahut saara time hai,
-bahut saare opportunities hain,
-aur bahut kuch achieve karna baaki hai.
+Apne dreams ko seriously lena,
+lekin khud par unnecessary pressure mat banana.
 </p>
 
 <br>
 
 <p>
-Kabhi result late mile to iska matlab ye nahi
-ki effort waste ho gaya.
-Bas journey ko thoda aur time chahiye hota hai.
+Har cheez ek hi din mein perfect nahi hoti.
+Small steps bhi important hote hain.
+Bas apni journey ko continue rakhna.
 </p>
 
 <br>
@@ -625,27 +555,27 @@ Bas journey ko thoda aur time chahiye hota hai.
 </section>
 
 
-<!-- ================= PAGE 7 ================= -->
+<!-- PAGE 7 -->
 
 <section class="page">
 
 <div class="small">Page 07</div>
 
-<h2>☁️ On Difficult Days</h2>
+<h2>☁️ On Not-So-Good Days</h2>
 
 <p>
 Agar kabhi koi din achha na ho,
 to khud ko blame karne ki zaroorat nahi.
-Thoda rest lena,
-apne favourite people se baat karna,
-apna mind fresh karna aur phir slowly continue karna.
+Thoda rest,
+thoda patience
+aur phir slowly start again.
 </p>
 
 <br>
 
 <p>
-Har day perfect hona zaroori nahi.
-Bas khud ke saath honest aur kind rehna.
+Har din perfect hona zaroori nahi hota.
+Bas khud ke saath kind rehna.
 </p>
 
 <div class="big-heart">🤍</div>
@@ -653,7 +583,7 @@ Bas khud ke saath honest aur kind rehna.
 </section>
 
 
-<!-- ================= PAGE 8 ================= -->
+<!-- PAGE 8 -->
 
 <section class="page">
 
@@ -662,78 +592,77 @@ Bas khud ke saath honest aur kind rehna.
 <h2>🌌 Until We Meet</h2>
 
 <p>
-Kabhi-kabhi kuch people door hote hain,
-par distance har connection ko weak nahi karta.
-Kuch cheezein bas time ke saath better moment ka wait karti hain.
+Distance kabhi-kabhi annoying zaroor hota hai,
+lekin beautiful moments ke liye
+thoda wait karna bhi worth it hota hai.
 </p>
 
 <br>
 
 <p>
-Filhaal bas itni si hope hai ki
-jaldi hi woh moment aaye jab bina screen ke,
-bina messages ke,
-normal sa saamne baithkar properly baat ho sake.
+Bas ek hope hai ki
+jaldi hi woh moment aaye
+jab normal sa saamne baithkar
+properly baat kar sakein.
 </p>
 
 <br>
 
 <div class="quote">
-"Some good moments are worth waiting for. ✨"
+"Some moments are worth waiting for. ✨"
 </div>
 
 </section>
 
 
-<!-- ================= PAGE 9 ================= -->
+<!-- PAGE 9 -->
 
 <section class="page">
 
 <div class="small">Page 09</div>
 
-<h2>🎈 Keep Smiling</h2>
+<h2>🎈 Keep That Smile</h2>
 
 <p>
-Ek request hai —
-apni smile ko unnecessary tension ke neeche mat chhupana.
-Jo cheezein aaj complicated lag rahi hain,
-zaroori nahi ki hamesha waisi hi rahengi.
+Please unnecessary cheezon ko lekar
+apna mind overload mat karna.
+Jo cheezein aaj complicated lagti hain,
+zaroori nahi kal bhi waisi hi rahengi.
 </p>
 
 <br>
 
 <p>
-Time change hota hai,
-situations change hoti hain,
-aur naye better days bhi aate hain.
-So breathe, relax and keep going. 🌸
+Time ke saath situations change hoti hain
+aur better days bhi aate hain.
+So breathe, smile and keep going. 🌸
 </p>
 
 </section>
 
 
-<!-- ================= PAGE 10 ================= -->
+<!-- PAGE 10 -->
 
 <section class="page">
 
 <div class="small">Page 10</div>
 
-<h2>💫 One More Year</h2>
+<h2>💫 A New Chapter</h2>
 
 <div class="cards">
 
 <div class="card">
-<span class="emoji">🌟</span>
+<span>🌟</span>
 <p>More confidence</p>
 </div>
 
 <div class="card">
-<span class="emoji">🌈</span>
+<span>🌈</span>
 <p>More happiness</p>
 </div>
 
 <div class="card">
-<span class="emoji">🚀</span>
+<span>🚀</span>
 <p>More achievements</p>
 </div>
 
@@ -742,20 +671,20 @@ So breathe, relax and keep going. 🌸
 <br>
 
 <p>
-May this year bring you closer to the person
-you want to become.
+May this year bring you closer
+to everything you dream about.
 </p>
 
 </section>
 
 
-<!-- ================= PAGE 11 ================= -->
+<!-- PAGE 11 -->
 
 <section class="page">
 
 <div class="small">Page 11</div>
 
-<h2>🫶 A Small Reminder</h2>
+<h2>🫶 Remember This</h2>
 
 <div class="quote">
 "You don't have to figure out everything at once."
@@ -764,9 +693,8 @@ you want to become.
 <div class="line"></div>
 
 <p>
-Bas apna dhyaan rakhna,
-apne goals par focus karna,
-zyada overthink mat karna
+Apna dhyaan rakhna,
+apne goals par focus karna
 aur life ko thoda naturally unfold hone dena.
 </p>
 
@@ -774,19 +702,19 @@ aur life ko thoda naturally unfold hone dena.
 
 <p>
 Aur haan...
-birthday enjoy karna bhi important hai. 😄🎂
+birthday enjoy karna compulsory hai. 😄🎂
 </p>
 
 </section>
 
 
-<!-- ================= PAGE 12 ================= -->
+<!-- PAGE 12 -->
 
 <section class="page">
 
 <div class="small">The last page</div>
 
-<div class="final-heart">❤️</div>
+<div class="big-heart">❤️</div>
 
 <h1>Happy Birthday</h1>
 
@@ -808,7 +736,7 @@ things will fall into place. ✨
 
 <br>
 
-<p class="highlight">
+<p class="pink">
 Once again, Happy Birthday! 🎂💗
 </p>
 
@@ -819,9 +747,13 @@ Once again, Happy Birthday! 🎂💗
 
 <div class="buttons">
 
-<button onclick="previousPage()">← Previous</button>
+<button onclick="previousPage()">
+← Previous
+</button>
 
-<button onclick="nextPage()">Next →</button>
+<button onclick="nextPage()">
+Next →
+</button>
 
 </div>
 
@@ -831,109 +763,109 @@ Once again, Happy Birthday! 🎂💗
 
 <script>
 
-/* ================= PAGE SYSTEM ================= */
+/* ===============================
+   PAGE SYSTEM
+================================ */
 
 const pages = document.querySelectorAll(".page");
 
 let currentPage = 0;
 
-const pageNumber = document.getElementById("pageNumber");
+const number = document.getElementById("number");
 
 const progress = document.getElementById("progress");
 
-function showPage(index){
 
-    if(index < 0) index = 0;
+function showPage(page){
 
-    if(index >= pages.length)
-        index = pages.length - 1;
+    if(page < 0){
+        page = 0;
+    }
 
-    pages.forEach(page=>{
-        page.classList.remove("active");
+    if(page >= pages.length){
+        page = pages.length - 1;
+    }
+
+    pages.forEach(function(item){
+        item.classList.remove("active");
     });
 
-    pages[index].classList.add("active");
+    pages[page].classList.add("active");
 
-    currentPage = index;
+    currentPage = page;
 
-    pageNumber.textContent = index + 1;
+    number.innerText = page + 1;
 
     progress.style.width =
-        ((index + 1) / pages.length * 100) + "%";
+        ((page + 1) / pages.length * 100) + "%";
 
-    createBurst();
+    burst();
+
 }
+
+
+/* NEXT */
 
 function nextPage(){
 
     if(currentPage < pages.length - 1){
+
         showPage(currentPage + 1);
+
     }else{
-        createBigConfetti();
+
+        bigConfetti();
+
     }
 
 }
+
+
+/* PREVIOUS */
 
 function previousPage(){
 
     if(currentPage > 0){
+
         showPage(currentPage - 1);
+
     }
 
 }
 
 
-/* ================= KEYBOARD ================= */
+/* Keyboard */
 
-document.addEventListener("keydown",function(e){
+document.addEventListener("keydown",function(event){
 
-    if(e.key === "ArrowRight"){
+    if(event.key === "ArrowRight"){
         nextPage();
     }
 
-    if(e.key === "ArrowLeft"){
+    if(event.key === "ArrowLeft"){
         previousPage();
     }
 
 });
 
 
-/* ================= TYPEWRITER ================= */
-
-const text = "Kamini 💗";
-
-let i = 0;
-
-function typeWriter(){
-
-    if(i < text.length){
-
-        document.getElementById("typing").textContent += text.charAt(i);
-
-        i++;
-
-        setTimeout(typeWriter,100);
-
-    }
-
-}
-
-setTimeout(typeWriter,800);
-
-
-/* ================= STARS ================= */
+/* ===============================
+   STARS
+================================ */
 
 const stars = document.getElementById("stars");
 
 for(let i=0;i<100;i++){
 
-    const star = document.createElement("div");
+    let star = document.createElement("div");
 
     star.className = "star";
 
-    star.style.left = Math.random()*100 + "%";
+    star.style.left =
+        Math.random()*100 + "%";
 
-    star.style.top = Math.random()*100 + "%";
+    star.style.top =
+        Math.random()*100 + "%";
 
     star.style.animationDelay =
         Math.random()*2 + "s";
@@ -943,31 +875,32 @@ for(let i=0;i<100;i++){
 }
 
 
-/* ================= FLOATING HEARTS ================= */
+/* ===============================
+   FLOATING HEARTS
+================================ */
 
 function createHeart(){
 
-    const heart = document.createElement("div");
+    let heart = document.createElement("div");
 
     heart.className = "heart";
 
-    const hearts = ["💗","💖","💕","💞","💓","❤️"];
-
-    heart.textContent =
-        hearts[Math.floor(Math.random()*hearts.length)];
+    heart.innerText =
+        ["💗","💖","💕","💓","❤️","💞"]
+        [Math.floor(Math.random()*6)];
 
     heart.style.left =
         Math.random()*100 + "%";
 
-    heart.style.animationDuration =
-        (5 + Math.random()*5) + "s";
-
     heart.style.fontSize =
         (15 + Math.random()*25) + "px";
 
+    heart.style.animationDuration =
+        (5 + Math.random()*5) + "s";
+
     document.body.appendChild(heart);
 
-    setTimeout(()=>{
+    setTimeout(function(){
         heart.remove();
     },10000);
 
@@ -976,18 +909,19 @@ function createHeart(){
 setInterval(createHeart,500);
 
 
-/* ================= BALLOONS ================= */
+/* ===============================
+   BALLOONS
+================================ */
 
 function createBalloon(){
 
-    const balloon = document.createElement("div");
+    let balloon = document.createElement("div");
 
     balloon.className = "balloon";
 
-    const balloons = ["🎈","🎈","🎈","🎀"];
-
-    balloon.textContent =
-        balloons[Math.floor(Math.random()*balloons.length)];
+    balloon.innerText =
+        ["🎈","🎈","🎀"]
+        [Math.floor(Math.random()*3)];
 
     balloon.style.left =
         Math.random()*100 + "%";
@@ -997,7 +931,7 @@ function createBalloon(){
 
     document.body.appendChild(balloon);
 
-    setTimeout(()=>{
+    setTimeout(function(){
         balloon.remove();
     },13000);
 
@@ -1006,146 +940,82 @@ function createBalloon(){
 setInterval(createBalloon,1800);
 
 
-/* ================= SPARKLE ================= */
+/* ===============================
+   CLICK SPARKLE
+================================ */
 
-document.addEventListener("click",function(e){
+document.addEventListener("click",function(event){
 
-    const sparkle = document.createElement("div");
+    let sparkle =
+        document.createElement("div");
 
     sparkle.className = "sparkle";
 
-    sparkle.textContent = "✨";
+    sparkle.innerText = "✨";
 
-    sparkle.style.left = e.clientX + "px";
+    sparkle.style.left =
+        event.clientX + "px";
 
-    sparkle.style.top = e.clientY + "px";
+    sparkle.style.top =
+        event.clientY + "px";
 
     document.body.appendChild(sparkle);
 
-    setTimeout(()=>{
+    setTimeout(function(){
         sparkle.remove();
     },1000);
 
 });
 
 
-/* ================= ENVELOPE ================= */
+/* ===============================
+   ENVELOPE
+================================ */
 
 function openEnvelope(){
 
-    const envelope =
-        document.querySelector(".envelope");
+    document.getElementById("envelopeText").innerText =
+        "Bas itni si wish hai — tumhara birthday genuinely beautiful ho. 💗";
 
-    envelope.classList.toggle("open");
-
-    document.getElementById("envelopeText").textContent =
-        "Bas itni si baat — tumhara birthday genuinely special ho. 💗";
-
-    createBigConfetti();
+    bigConfetti();
 
 }
 
 
-/* ================= SMALL CONFETTI ================= */
+/* ===============================
+   SMALL BURST
+================================ */
 
-function createBurst(){
+function burst(){
 
-    for(let i=0;i<15;i++){
+    for(let i=0;i<12;i++){
 
-        const confetti =
+        let item =
             document.createElement("div");
 
-        confetti.textContent =
+        item.innerText =
             ["💗","✨","💖","🌸","⭐"]
             [Math.floor(Math.random()*5)];
 
-        confetti.style.position="fixed";
+        item.style.position="fixed";
 
-        confetti.style.left =
-            "50%";
+        item.style.left="50%";
 
-        confetti.style.top =
-            "50%";
+        item.style.top="50%";
 
-        confetti.style.fontSize =
-            "20px";
+        item.style.fontSize="20px";
 
-        confetti.style.pointerEvents =
-            "none";
+        item.style.zIndex="100";
 
-        confetti.style.zIndex =
-            "100";
+        item.style.pointerEvents="none";
 
-        const x =
-            (Math.random()-0.5)*500;
+        let x =
+            (Math.random()-.5)*400;
 
-        const y =
-            (Math.random()-0.5)*400;
+        let y =
+            (Math.random()-.5)*300;
 
-        confetti.animate([
-
-            {
-                transform:"translate(-50%,-50%) scale(.3)",
-                opacity:1
-            },
-
-            {
-                transform:
-                    `translate(calc(-50% + ${x}px),calc(-50% + ${y}px)) scale(1.5)`,
-                opacity:0
-            }
-
-        ],{
-
-            duration:1000,
-            easing:"ease-out"
-
-        });
-
-        document.body.appendChild(confetti);
-
-        setTimeout(()=>{
-            confetti.remove();
-        },1000);
-
-    }
-
-}
-
-
-/* ================= BIG CONFETTI ================= */
-
-function createBigConfetti(){
-
-    for(let i=0;i<60;i++){
-
-        const c =
-            document.createElement("div");
-
-        c.textContent =
-            ["❤️","💖","✨","🎉","🌸","⭐","💗"]
-            [Math.floor(Math.random()*7)];
-
-        c.style.position="fixed";
-
-        c.style.left="50%";
-
-        c.style.top="50%";
-
-        c.style.fontSize =
-            (15+Math.random()*25)+"px";
-
-        c.style.zIndex="200";
-
-        c.style.pointerEvents="none";
-
-        const x =
-            (Math.random()-0.5)*window.innerWidth;
-
-        const y =
-            (Math.random()-0.5)*window.innerHeight;
-
-        c.animate([
+        item.animate([
 
             {
                 transform:"translate(-50%,-50%) scale(.2)",
@@ -1154,17 +1024,100 @@ function createBigConfetti(){
 
             {
                 transform:
-                    `translate(calc(-50% + ${x}px),calc(-50% + ${y}px)) rotate(360deg)`,
+                `translate(calc(-50% + ${x}px),
+                calc(-50% + ${y}px)) scale(1.5)`,
                 opacity:0
             }
 
         ],{
 
-            duration:1500+Math.random()*1200,
-            easing:"cubic-bezier(.2,.8,.3,1)"
+            duration:1000
 
         });
 
-        document.body.appendChild(c);
+        document.body.appendChild(item);
 
-        setTimeout
+        setTimeout(function(){
+            item.remove();
+        },1000);
+
+    }
+
+}
+
+
+/* ===============================
+   BIG CONFETTI
+================================ */
+
+function bigConfetti(){
+
+    for(let i=0;i<50;i++){
+
+        let item =
+            document.createElement("div");
+
+        item.innerText =
+            ["❤️","💖","✨","🎉","🌸","⭐","💗"]
+            [Math.floor(Math.random()*7)];
+
+        item.style.position="fixed";
+
+        item.style.left="50%";
+
+        item.style.top="50%";
+
+        item.style.fontSize =
+            (15+Math.random()*25)+"px";
+
+        item.style.zIndex="200";
+
+        item.style.pointerEvents="none";
+
+        let x =
+            (Math.random()-.5)*window.innerWidth;
+
+        let y =
+            (Math.random()-.5)*window.innerHeight;
+
+        item.animate([
+
+            {
+                transform:"translate(-50%,-50%) scale(.2)",
+                opacity:1
+            },
+
+            {
+                transform:
+                `translate(calc(-50% + ${x}px),
+                calc(-50% + ${y}px))
+                rotate(360deg)`,
+                opacity:0
+            }
+
+        ],{
+
+            duration:1800,
+            easing:"ease-out"
+
+        });
+
+        document.body.appendChild(item);
+
+        setTimeout(function(){
+            item.remove();
+        },2200);
+
+    }
+
+}
+
+
+/* Start */
+
+showPage(0);
+
+</script>
+
+</body>
+</html>
