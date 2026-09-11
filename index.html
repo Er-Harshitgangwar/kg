@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Generic title: preview me personal name nahi aayega -->
+<title>A Little Birthday Surprise 🎂</title>
+
+<meta name="description" content="A little birthday surprise filled with wishes, smiles and beautiful hopes.">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family: "Segoe UI", Arial, sans-serif;
+    background:
+        radial-gradient(circle at top,#30134d 0%,#160c2b 40%,#080511 100%);
+    color:white;
+    min-height:100vh;
+    overflow:hidden;
+}
+
+/* ---------- BACKGROUND STARS ---------- */
+
+.stars{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:0;
+}
+
+.star{
+    position:absolute;
+    width:3px;
+    height:3px;
+    background:white;
+    border-radius:50%;
+    animation:twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle{
+    from{opacity:.2;transform:scale(.7);}
+    to{opacity:1;transform:scale(1.4);}
+}
+
+/* ---------- MAIN ---------- */
+
+.container{
+    position:relative;
+    z-index:2;
+    width:100%;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.book{
+    width:min(900px,95vw);
+    height:min(650px,90vh);
+    position:relative;
+}
+
+/* ---------- PAGES ---------- */
+
+.page{
+    position:absolute;
+    inset:0;
+    padding:55px 45px;
+    border-radius:30px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.13),
+            rgba(255,255,255,.045)
+        );
+
+    border:1px solid rgba(255,255,255,.18);
+
+    backdrop-filter:blur(15px);
+
+    box-shadow:
+        0 25px 80px rgba(0,0,0,.5),
+        inset 0 0 40px rgba(255,255,255,.025);
+
+    display:none;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+
+    overflow:hidden;
+}
+
+.page.active{
+    display:flex;
+    animation:pageIn .7s ease;
+}
+
+@keyframes pageIn{
+    from{
+        opacity:0;
+        transform:scale(.94) translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:scale(1) translateY(0);
+    }
+}
+
+/* ---------- TEXT ---------- */
+
+.small{
+    color:#ffb9da;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    font-size:13px;
+    margin-bottom:18px;
+}
+
+h1{
+    font-size:clamp(38px,7vw,72px);
+    line-height:1.05;
+    margin-bottom:20px;
+    background:linear-gradient(90deg,#fff,#ffb7d7,#ffd2e6);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+h2{
+    font-size:clamp(28px,5vw,45px);
+    margin-bottom:20px;
+}
+
+p{
+    max-width:700px;
+    line-height:1.8;
+    color:#eee;
+    font-size:17px;
+}
+
+.highlight{
+    color:#ff9fcb;
+}
+
+.big-heart{
+    font-size:90px;
+    animation:heartbeat 1.5s infinite;
+    margin-bottom:20px;
+}
+
+@keyframes heartbeat{
+    0%,100%{transform:scale(1);}
+    15%{transform:scale(1.15);}
+    30%{transform:scale(1);}
+    45%{transform:scale(1.1);}
+}
+
+/* ---------- BUTTONS ---------- */
+
+.buttons{
+    position:absolute;
+    bottom:25px;
+    width:100%;
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    z-index:20;
+}
+
+button{
+    border:none;
+    padding:12px 22px;
+    border-radius:30px;
+    color:white;
+    background:linear-gradient(135deg,#ff4f9a,#a33cff);
+    font-size:15px;
+    cursor:pointer;
+    box-shadow:0 8px 25px rgba(255,60,150,.25);
+    transition:.25s;
+}
+
+button:hover{
+    transform:translateY(-3px);
+    box-shadow:0 12px 30px rgba(255,60,150,.4);
+}
+
+/* ---------- PAGE COUNTER ---------- */
+
+.counter{
+    position:absolute;
+    top:20px;
+    right:25px;
+    font-size:13px;
+    color:#d8c9e5;
+    z-index:20;
+}
+
+/* ---------- PROGRESS ---------- */
+
+.progress{
+    position:absolute;
+    top:0;
+    left:0;
+    height:4px;
+    width:0%;
+    background:linear-gradient(90deg,#ff4f9a,#c46cff);
+    border-radius:10px;
+    transition:.5s;
+    z-index:30;
+}
+
+/* ---------- ENVELOPE ---------- */
+
+.envelope{
+    width:180px;
+    height:120px;
+    background:#ff5c9f;
+    border-radius:8px;
+    position:relative;
+    cursor:pointer;
+    margin:25px 0;
+    box-shadow:0 20px 50px rgba(255,50,140,.3);
+}
+
+.envelope:before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    border-left:90px solid transparent;
+    border-right:90px solid transparent;
+    border-top:65px solid #ff9bc5;
+}
+
+.envelope:after{
+    content:"💌";
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    font-size:42px;
+}
+
+.envelope.open{
+    transform:rotateX(15deg);
+}
+
+/* ---------- CARDS ---------- */
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+    width:100%;
+    max-width:750px;
+    margin-top:20px;
+}
+
+.card{
+    padding:22px 14px;
+    border-radius:20px;
+    background:rgba(255,255,255,.07);
+    border:1px solid rgba(255,255,255,.1);
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+    background:rgba(255,255,255,.11);
+}
+
+.card .emoji{
+    font-size:35px;
+    display:block;
+    margin-bottom:10px;
+}
+
+.card p{
+    font-size:14px;
+    line-height:1.5;
+}
+
+/* ---------- QUOTE ---------- */
+
+.quote{
+    font-size:25px;
+    line-height:1.6;
+    max-width:680px;
+    color:#ffe4f0;
+    margin:20px 0;
+}
+
+.line{
+    width:100px;
+    height:3px;
+    background:#ff65a8;
+    border-radius:10px;
+    margin:15px auto;
+}
+
+/* ---------- BALLOONS ---------- */
+
+.balloon{
+    position:fixed;
+    bottom:-120px;
+    font-size:55px;
+    animation:balloonUp linear forwards;
+    z-index:1;
+    pointer-events:none;
+}
+
+@keyframes balloonUp{
+    to{
+        transform:translateY(-120vh) rotate(15deg);
+        opacity:0;
+    }
+}
+
+/* ---------- FLOATING HEART ---------- */
+
+.heart{
+    position:fixed;
+    bottom:-30px;
+    color:#ff72ad;
+    font-size:20px;
+    z-index:1;
+    pointer-events:none;
+    animation:heartUp linear forwards;
+}
+
+@keyframes heartUp{
+    0%{
+        transform:translateY(0) scale(.5) rotate(0);
+        opacity:0;
+    }
+
+    15%{
+        opacity:1;
+    }
+
+    100%{
+        transform:translateY(-110vh) scale(1.5) rotate(40deg);
+        opacity:0;
+    }
+}
+
+/* ---------- SPARKLE ---------- */
+
+.sparkle{
+    position:fixed;
+    pointer-events:none;
+    font-size:18px;
+    animation:sparkleOut 1s forwards;
+    z-index:50;
+}
+
+@keyframes sparkleOut{
+    from{
+        transform:scale(.2);
+        opacity:1;
+    }
+    to{
+        transform:scale(1.8);
+        opacity:0;
+    }
+}
+
+/* ---------- PHOTO PLACEHOLDER ---------- */
+
+.photo-box{
+    width:170px;
+    height:170px;
+    border-radius:50%;
+    margin:15px;
+    border:4px solid rgba(255,255,255,.25);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:60px;
+    background:linear-gradient(135deg,#ff579e,#7b39c9);
+    box-shadow:0 0 40px rgba(255,75,160,.3);
+}
+
+/* ---------- FINAL ---------- */
+
+.final-heart{
+    font-size:110px;
+    filter:drop-shadow(0 0 20px #ff4c9b);
+    animation:heartbeat 1.4s infinite;
+}
+
+/* ---------- MOBILE ---------- */
+
+@media(max-width:600px){
+
+    .container{
+        padding:10px;
+    }
+
+    .book{
+        width:100%;
+        height:92vh;
+    }
+
+    .page{
+        padding:45px 22px 75px;
+        border-radius:23px;
+    }
+
+    p{
+        font-size:15px;
+        line-height:1.65;
+    }
+
+    .quote{
+        font-size:20px;
+    }
+
+    .cards{
+        grid-template-columns:1fr;
+        max-height:310px;
+        overflow:auto;
+    }
+
+    .card{
+        padding:14px;
+    }
+
+    .card .emoji{
+        font-size:27px;
+    }
+
+    button{
+        padding:10px 17px;
+        font-size:14px;
+    }
+
+    .big-heart{
+        font-size:70px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="stars" id="stars"></div>
+
+<div class="container">
+
+<div class="book">
+
+<div class="progress" id="progress"></div>
+
+<div class="counter">
+    <span id="pageNumber">1</span> / 12
+</div>
+
+
+<!-- ================= PAGE 1 ================= -->
+
+<section class="page active">
+
+<div class="small">A little surprise for you</div>
+
+<div class="big-heart">💗</div>
+
+<h1>Happy Birthday</h1>
+
+<h2 id="typing"></h2>
+
+<div class="line"></div>
+
+<p>
+Aaj ka din bas ek simple wish se thoda zyada special hona chahiye.
+Isliye ye chhota sa digital surprise banaya hai,
+jisme kuch words hain jo shayad saamne bolna mushkil hota hai.
+</p>
+
+</section>
+
+
+<!-- ================= PAGE 2 ================= -->
+
+<section class="page">
+
+<div class="small">Page 02</div>
+
+<h2>🌸 A Beautiful Day</h2>
+
+<p>
+Birthday sirf calendar ki ek date nahi hoti.
+Ye ek reminder hota hai ki duniya mein ek aur beautiful year add hua,
+aur uske saath naye moments, naye dreams aur naye chances bhi aaye.
+</p>
+
+<br>
+
+<p>
+I hope tumhara aane wala year
+peace, happiness, success aur bahut saari genuine smiles se bhara ho.
+Jo cheezein tum chahti ho,
+unke liye tumhe patience bhi mile aur courage bhi.
+</p>
+
+</section>
+
+
+<!-- ================= PAGE 3 ================= -->
+
+<section class="page">
+
+<div class="small">Page 03</div>
+
+<h2>💌 Open This Wish</h2>
+
+<div class="envelope" onclick="openEnvelope()"></div>
+
+<p id="envelopeText">
+Is envelope ko click karo...
+</p>
+
+</section>
+
+
+<!-- ================= PAGE 4 ================= -->
+
+<section class="page">
+
+<div class="small">Page 04</div>
+
+<h2>✨ Some Simple Wishes</h2>
+
+<div class="cards">
+
+<div class="card">
+<span class="emoji">😊</span>
+<p>Hamesha smile karne ke reasons milte rahein.</p>
+</div>
+
+<div class="card">
+<span class="emoji">🌷</span>
+<p>Har difficult day ke baad better days aayein.</p>
+</div>
+
+<div class="card">
+<span class="emoji">⭐</span>
+<p>Tumhare dreams dheere-dheere reality bante rahein.</p>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= PAGE 5 ================= -->
+
+<section class="page">
+
+<div class="small">Page 05</div>
+
+<h2>🌙 Take It Easy</h2>
+
+<div class="quote">
+"Har cheez ka answer aaj hi milna zaroori nahi hota."
+</div>
+
+<div class="line"></div>
+
+<p>
+Kabhi-kabhi life thodi confusing hoti hai.
+Aise time par khud par unnecessary pressure mat lena.
+Ek-ek din ko calmly handle karna.
+Jo cheez tumhare control mein hai,
+uspar focus karna aur baaki cheezon ko thoda time dena.
+</p>
+
+</section>
+
+
+<!-- ================= PAGE 6 ================= -->
+
+<section class="page">
+
+<div class="small">Page 06</div>
+
+<h2>🌻 For Your Future</h2>
+
+<p>
+Apne dreams ko chhota mat samajhna.
+Tumhare paas abhi bahut saara time hai,
+bahut saare opportunities hain,
+aur bahut kuch achieve karna baaki hai.
+</p>
+
+<br>
+
+<p>
+Kabhi result late mile to iska matlab ye nahi
+ki effort waste ho gaya.
+Bas journey ko thoda aur time chahiye hota hai.
+</p>
+
+<br>
+
+<div class="quote">
+"Slow progress is still progress. 🌱"
+</div>
+
+</section>
+
+
+<!-- ================= PAGE 7 ================= -->
+
+<section class="page">
+
+<div class="small">Page 07</div>
+
+<h2>☁️ On Difficult Days</h2>
+
+<p>
+Agar kabhi koi din achha na ho,
+to khud ko blame karne ki zaroorat nahi.
+Thoda rest lena,
+apne favourite people se baat karna,
+apna mind fresh karna aur phir slowly continue karna.
+</p>
+
+<br>
+
+<p>
+Har day perfect hona zaroori nahi.
+Bas khud ke saath honest aur kind rehna.
+</p>
+
+<div class="big-heart">🤍</div>
+
+</section>
+
+
+<!-- ================= PAGE 8 ================= -->
+
+<section class="page">
+
+<div class="small">Page 08</div>
+
+<h2>🌌 Until We Meet</h2>
+
+<p>
+Kabhi-kabhi kuch people door hote hain,
+par distance har connection ko weak nahi karta.
+Kuch cheezein bas time ke saath better moment ka wait karti hain.
+</p>
+
+<br>
+
+<p>
+Filhaal bas itni si hope hai ki
+jaldi hi woh moment aaye jab bina screen ke,
+bina messages ke,
+normal sa saamne baithkar properly baat ho sake.
+</p>
+
+<br>
+
+<div class="quote">
+"Some good moments are worth waiting for. ✨"
+</div>
+
+</section>
+
+
+<!-- ================= PAGE 9 ================= -->
+
+<section class="page">
+
+<div class="small">Page 09</div>
+
+<h2>🎈 Keep Smiling</h2>
+
+<p>
+Ek request hai —
+apni smile ko unnecessary tension ke neeche mat chhupana.
+Jo cheezein aaj complicated lag rahi hain,
+zaroori nahi ki hamesha waisi hi rahengi.
+</p>
+
+<br>
+
+<p>
+Time change hota hai,
+situations change hoti hain,
+aur naye better days bhi aate hain.
+So breathe, relax and keep going. 🌸
+</p>
+
+</section>
+
+
+<!-- ================= PAGE 10 ================= -->
+
+<section class="page">
+
+<div class="small">Page 10</div>
+
+<h2>💫 One More Year</h2>
+
+<div class="cards">
+
+<div class="card">
+<span class="emoji">🌟</span>
+<p>More confidence</p>
+</div>
+
+<div class="card">
+<span class="emoji">🌈</span>
+<p>More happiness</p>
+</div>
+
+<div class="card">
+<span class="emoji">🚀</span>
+<p>More achievements</p>
+</div>
+
+</div>
+
+<br>
+
+<p>
+May this year bring you closer to the person
+you want to become.
+</p>
+
+</section>
+
+
+<!-- ================= PAGE 11 ================= -->
+
+<section class="page">
+
+<div class="small">Page 11</div>
+
+<h2>🫶 A Small Reminder</h2>
+
+<div class="quote">
+"You don't have to figure out everything at once."
+</div>
+
+<div class="line"></div>
+
+<p>
+Bas apna dhyaan rakhna,
+apne goals par focus karna,
+zyada overthink mat karna
+aur life ko thoda naturally unfold hone dena.
+</p>
+
+<br>
+
+<p>
+Aur haan...
+birthday enjoy karna bhi important hai. 😄🎂
+</p>
+
+</section>
+
+
+<!-- ================= PAGE 12 ================= -->
+
+<section class="page">
+
+<div class="small">The last page</div>
+
+<div class="final-heart">❤️</div>
+
+<h1>Happy Birthday</h1>
+
+<p>
+May your days be brighter,
+your heart lighter,
+your dreams closer
+and your smile more frequent.
+</p>
+
+<br>
+
+<p>
+Aur jo beautiful moments aage aane wale hain,
+unke liye bas ek little hope rakho.
+Maybe sooner than we think,
+things will fall into place. ✨
+</p>
+
+<br>
+
+<p class="highlight">
+Once again, Happy Birthday! 🎂💗
+</p>
+
+</section>
+
+
+<!-- BUTTONS -->
+
+<div class="buttons">
+
+<button onclick="previousPage()">← Previous</button>
+
+<button onclick="nextPage()">Next →</button>
+
+</div>
+
+</div>
+</div>
+
+
+<script>
+
+/* ================= PAGE SYSTEM ================= */
+
+const pages = document.querySelectorAll(".page");
+
+let currentPage = 0;
+
+const pageNumber = document.getElementById("pageNumber");
+
+const progress = document.getElementById("progress");
+
+function showPage(index){
+
+    if(index < 0) index = 0;
+
+    if(index >= pages.length)
+        index = pages.length - 1;
+
+    pages.forEach(page=>{
+        page.classList.remove("active");
+    });
+
+    pages[index].classList.add("active");
+
+    currentPage = index;
+
+    pageNumber.textContent = index + 1;
+
+    progress.style.width =
+        ((index + 1) / pages.length * 100) + "%";
+
+    createBurst();
+}
+
+function nextPage(){
+
+    if(currentPage < pages.length - 1){
+        showPage(currentPage + 1);
+    }else{
+        createBigConfetti();
+    }
+
+}
+
+function previousPage(){
+
+    if(currentPage > 0){
+        showPage(currentPage - 1);
+    }
+
+}
+
+
+/* ================= KEYBOARD ================= */
+
+document.addEventListener("keydown",function(e){
+
+    if(e.key === "ArrowRight"){
+        nextPage();
+    }
+
+    if(e.key === "ArrowLeft"){
+        previousPage();
+    }
+
+});
+
+
+/* ================= TYPEWRITER ================= */
+
+const text = "Kamini 💗";
+
+let i = 0;
+
+function typeWriter(){
+
+    if(i < text.length){
+
+        document.getElementById("typing").textContent += text.charAt(i);
+
+        i++;
+
+        setTimeout(typeWriter,100);
+
+    }
+
+}
+
+setTimeout(typeWriter,800);
+
+
+/* ================= STARS ================= */
+
+const stars = document.getElementById("stars");
+
+for(let i=0;i<100;i++){
+
+    const star = document.createElement("div");
+
+    star.className = "star";
+
+    star.style.left = Math.random()*100 + "%";
+
+    star.style.top = Math.random()*100 + "%";
+
+    star.style.animationDelay =
+        Math.random()*2 + "s";
+
+    stars.appendChild(star);
+
+}
+
+
+/* ================= FLOATING HEARTS ================= */
+
+function createHeart(){
+
+    const heart = document.createElement("div");
+
+    heart.className = "heart";
+
+    const hearts = ["💗","💖","💕","💞","💓","❤️"];
+
+    heart.textContent =
+        hearts[Math.floor(Math.random()*hearts.length)];
+
+    heart.style.left =
+        Math.random()*100 + "%";
+
+    heart.style.animationDuration =
+        (5 + Math.random()*5) + "s";
+
+    heart.style.fontSize =
+        (15 + Math.random()*25) + "px";
+
+    document.body.appendChild(heart);
+
+    setTimeout(()=>{
+        heart.remove();
+    },10000);
+
+}
+
+setInterval(createHeart,500);
+
+
+/* ================= BALLOONS ================= */
+
+function createBalloon(){
+
+    const balloon = document.createElement("div");
+
+    balloon.className = "balloon";
+
+    const balloons = ["🎈","🎈","🎈","🎀"];
+
+    balloon.textContent =
+        balloons[Math.floor(Math.random()*balloons.length)];
+
+    balloon.style.left =
+        Math.random()*100 + "%";
+
+    balloon.style.animationDuration =
+        (7 + Math.random()*5) + "s";
+
+    document.body.appendChild(balloon);
+
+    setTimeout(()=>{
+        balloon.remove();
+    },13000);
+
+}
+
+setInterval(createBalloon,1800);
+
+
+/* ================= SPARKLE ================= */
+
+document.addEventListener("click",function(e){
+
+    const sparkle = document.createElement("div");
+
+    sparkle.className = "sparkle";
+
+    sparkle.textContent = "✨";
+
+    sparkle.style.left = e.clientX + "px";
+
+    sparkle.style.top = e.clientY + "px";
+
+    document.body.appendChild(sparkle);
+
+    setTimeout(()=>{
+        sparkle.remove();
+    },1000);
+
+});
+
+
+/* ================= ENVELOPE ================= */
+
+function openEnvelope(){
+
+    const envelope =
+        document.querySelector(".envelope");
+
+    envelope.classList.toggle("open");
+
+    document.getElementById("envelopeText").textContent =
+        "Bas itni si baat — tumhara birthday genuinely special ho. 💗";
+
+    createBigConfetti();
+
+}
+
+
+/* ================= SMALL CONFETTI ================= */
+
+function createBurst(){
+
+    for(let i=0;i<15;i++){
+
+        const confetti =
+            document.createElement("div");
+
+        confetti.textContent =
+            ["💗","✨","💖","🌸","⭐"]
+            [Math.floor(Math.random()*5)];
+
+        confetti.style.position="fixed";
+
+        confetti.style.left =
+            "50%";
+
+        confetti.style.top =
+            "50%";
+
+        confetti.style.fontSize =
+            "20px";
+
+        confetti.style.pointerEvents =
+            "none";
+
+        confetti.style.zIndex =
+            "100";
+
+        const x =
+            (Math.random()-0.5)*500;
+
+        const y =
+            (Math.random()-0.5)*400;
+
+        confetti.animate([
+
+            {
+                transform:"translate(-50%,-50%) scale(.3)",
+                opacity:1
+            },
+
+            {
+                transform:
+                    `translate(calc(-50% + ${x}px),calc(-50% + ${y}px)) scale(1.5)`,
+                opacity:0
+            }
+
+        ],{
+
+            duration:1000,
+            easing:"ease-out"
+
+        });
+
+        document.body.appendChild(confetti);
+
+        setTimeout(()=>{
+            confetti.remove();
+        },1000);
+
+    }
+
+}
+
+
+/* ================= BIG CONFETTI ================= */
+
+function createBigConfetti(){
+
+    for(let i=0;i<60;i++){
+
+        const c =
+            document.createElement("div");
+
+        c.textContent =
+            ["❤️","💖","✨","🎉","🌸","⭐","💗"]
+            [Math.floor(Math.random()*7)];
+
+        c.style.position="fixed";
+
+        c.style.left="50%";
+
+        c.style.top="50%";
+
+        c.style.fontSize =
+            (15+Math.random()*25)+"px";
+
+        c.style.zIndex="200";
+
+        c.style.pointerEvents="none";
+
+        const x =
+            (Math.random()-0.5)*window.innerWidth;
+
+        const y =
+            (Math.random()-0.5)*window.innerHeight;
+
+        c.animate([
+
+            {
+                transform:"translate(-50%,-50%) scale(.2)",
+                opacity:1
+            },
+
+            {
+                transform:
+                    `translate(calc(-50% + ${x}px),calc(-50% + ${y}px)) rotate(360deg)`,
+                opacity:0
+            }
+
+        ],{
+
+            duration:1500+Math.random()*1200,
+            easing:"cubic-bezier(.2,.8,.3,1)"
+
+        });
+
+        document.body.appendChild(c);
+
+        setTimeout
